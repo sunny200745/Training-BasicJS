@@ -1,0 +1,403 @@
+## OOPS in JAVASCRIPT
+
+### Overview of Object-oriented programming
+Object-oriented programming is a programming paradigm that uses abstraction to create models based on the real world. It uses several techniques from previously established paradigms, including modularity, polymorphism, and encapsulation, infact today most of the programing language uses OOPS such as JAVA, JAVASCRIPT, C++, C#, Python, Objective C etc.
+
+#Terminology used in OOPS:
+	
+- Namespace : Application specific name that describes the functionality of the group.
+
+- Class : Defines the characteristics of the object. It is a template definition of variables and methods of an object.
+
+- Object : An Instance of a class.
+
+- Property : An object characteristic, such as height, width, color etc.
+
+- Method : An object capability, such as a person can jump etc.
+
+- Constructor : A method called at the moment of instantiation of an object. It usually has the same name as that of the class containing it.
+
+- Inheritance : A class can inherit characteristics from another class eg: A child inherits certain features from their parent.
+
+- Encapsulation : Wrapping up of data and its associated methods under same group.
+
+- Abstraction : 
+
+- Polymorphism : Poly means "many"  and morphism means "forms". So it defines itself as different classes might define the same method or property.
+
+#Prototype-based programming(Defenation)
+In short words, class less programming style is prototype-based programing. Prototype-based programming is a style of object-oriented programming in which classes are not present, we resue the behavior of object by decorating thier properties.
+
+
+#JavaScript object oriented programming
+Let's  start with oops in js, 
+
+- Global Namespace : var MYAPP = MYAPP || {};
+  Desc : Here in above code sample we have first checked whether MYAPP is already defined (either in same file or in another file). If yes, then use the existing MYAPP global object, otherwise create an empty object called MYAPP which will encapsulate method, functions, variables and objects.
+
+  now lets add variable,function and method in namespace
+
+  MYAPP.commomMethod = {
+  	name : "",
+  	age : "",
+  	validateName : function(){
+  		// do your stuff
+  	},
+  	validateAge : function(){
+  		// do your stuff
+  	}
+  }
+
+- Standard built-in objects
+  JavaScript has several objects included in its core, for example, there are objects like Math, Object, Array, and String. eg : console.log(Math.random()); // here we show usage of random number using Math.random();
+
+  ** Note : Every object in JavaScript is an instance of the object Object and therefore inherits all its properties and methods.
+
+- Custom objects
+  * CLASS : JavaScript is a prototype-based language which contains no class statement, such as is found in C++ or Java. JavaScript uses functions as classes. Defining a class is as easy as defining a function.
+  eg: var Person = function () {}; // as simple as that.
+
+  * OBJECT : To create a new instance of an object obj we use the statement new obj, assigning the result (which is of type obj) to a variable to access it later. eg: var obj = new Object()
+
+  * Constructor : The constructor is called at the moment of instantiation (the moment when the object instance is created). The constructor is a method of the class. In JavaScript the function serves as the constructor of the object, therefore there is no need to explicitly define a constructor method.
+
+  eg :  var Person = function () {
+		  console.log('instance created');
+		};
+
+		var person1 = new Person();
+		var person2 = new Person();
+
+	Desc :  The constructor of the class Person logs a message when a Person is instantiated.		
+
+  * PROPERTY & METHODS : Let's explain this with example directly
+
+   eg : var Person = function (firstName) {
+		  this.firstName = firstName; //property
+		};
+
+		Person.prototype.sayHello = function() {  //method
+		  console.log("Hello, I'm " + this.firstName);
+		};
+
+		var person1 = new Person("Sunny");
+		var person2 = new Person("Aman");
+
+		// call the Person sayHello method.
+		person1.sayHello(); // logs "Hello, I'm Alice"
+		person2.sayHello(); // logs "Hello, I'm Bob"
+
+  * Major concepts of OOP's in example
+
+  	// Define the Person constructor
+  	var Person = function(firstName) {
+  	  this.firstName = firstName;
+  	};
+
+  	// Add a couple of methods to Person.prototype
+  	Person.prototype.walk = function(){
+  	  console.log("I am walking!");
+  	};
+
+  	Person.prototype.sayHello = function(){
+  	  console.log("Hello, I'm " + this.firstName);
+  	};
+
+  	// Define the Student constructor
+  	function Student(firstName, subject) {
+  	  /* Call the parent constructor, making sure (using Function#call)
+  	   that "this" is set correctly during the call*/
+  	  Person.call(this, firstName);
+
+  	  // Initialize our Student-specific properties
+  	  this.subject = subject;
+  	};
+
+  	// Assiging parent properties to child
+  	Student.prototype = Person.prototype; 
+
+  
+  	// Replace the "sayHello" method of parent
+  	Student.prototype.sayHello = function(){
+  	  console.log("Hello, I'm " + this.firstName + ". I'm studying "
+  	              + this.subject + ".");
+  	};
+
+  	// Add a "sayGoodBye" method
+  	Student.prototype.sayGoodBye = function(){
+  	  console.log("Goodbye!");
+  	};
+
+  	// Example usage:
+  	var student1 = new Student("Janet", "Applied Physics");
+  	student1.sayHello();   // "Hello, I'm Janet. I'm studying Applied Physics."
+  	student1.walk();       // "I am walking!"
+  	student1.sayGoodBye(); // "Goodbye!"
+
+  	// Check that instanceof works correctly
+  	console.log(student1 instanceof Person);  // true 
+  	console.log(student1 instanceof Student); // true
+
+
+
+  About Encapsulation : In the previous example, Student don't need to know how the Person class's walk() method is implemented, but still can use that method, that's encapsulation
+  
+  About Polymorphism : Just like all methods and properties are defined inside the prototype property, different classes can define methods with the same name; methods are scoped to the class in which they're defined.
+
+
+
+
+
+### jQuery Concepts
+
+# Unobtrusive javascript : "Unobtrusive JavaScript" is a general approach to the use of JavaScript in web pages. Best way to see the javascript in an unobtrusive way is by these way : 
+- Separation of functionality (the "behavior layer") from a Web page's structure/content and presentation
+  Best practices to avoid the problems of traditional JavaScript programming (such as browser inconsistencies and lack of scalability).
+
+- Progressive enhancement to support user agents that may not support advanced JavaScript functionality. 
+
+eg : <input type="button" id="btn" onclick="alert('Test')" />
+
+DESC : That is not unobstrusive javascript because behaviour and presentation are mixed. The onclick shouldn't be there in html and should be part of javascript itself not html.
+
+To make the above example unobtrusive way 
+
+eg : <input type="button" id="btn" />
+      JS file:
+      var el = document.getElementById('btn');
+      el.onclick = function(){
+        alert('Test');
+      };
+
+
+# jQuery fundamentals : jQuery($) is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. Concisely jQuery is designed to change the way we write Javscript.
+  
+  In simple words:
+  - Open-Source and lightweight JavaScript library
+  - It has Cross-browser support
+  - Easy DOM interaction
+  - Ajax Maniuplation
+  - It provide useful alternatives for common programming tasks (CSS, HTML)
+  - Its rich in plugins eco-system
+
+# The jQuery wrapper : jQuery isn't something that is "copied" - it is behavior that is wrapped around elements in the DOM.
+eg : var jqDivs = $("div");
+Desc : It returns an instance of a jQuery object, wrapping the elements you selected with your CSS selector (in this case, a jQuery object wrapping all the divs in the document).
+Also to view the content of the wrapped object console the above to see it yourself. 
+
+# The jQuery ready event : Javascript don't run unless it finishes loading all banner/images etc i.e why window.onload() is important in js, to overcome the situation of waiting and loading in jQuery we have ready event which gets triggred as soon as DOM loading completes.
+syntax : $(document).ready(function(){
+          // do stuff 
+          });
+
+
+  Difference between jQuery ready v/s window onload : 
+    - $( document ).ready() will only run once the page Document Object Model (DOM) is ready for JavaScript code to execute.    
+    - Specific to jQuery
+
+        where as
+
+    - $( window ).load(function() { ... }) will run once the entire page (images or iframes), along with DOM  finishes loading.
+    - In built JS function
+
+ Also $ sign is simply an alias for jQuery it is also called as selector  
+
+#jQuery Selectors : jQuery selectors allow you to select and manipulate HTML element(s).
+
+  * There are variety of seletors available in jQuery Most Important ones are  :
+
+  - The element Selector  : The jQuery element selector selects elements based on the element name.
+    eg : $("p").hide() // This will hide all the <p> elements
+  
+  - The #id Selector : The jQuery #id selector uses the id attribute of an HTML tag to find the specific  element
+    eg : $("#test").hide(); // This will hide the element with id "test".
+
+  - The .class Selector :   The jQuery class selector finds elements with a specific class.
+    eg : $(".test").hide(); // This will hide the all elements with class "test".
+
+    There are variety more selectors for them visit : http://api.jquery.com/category/selectors
+
+    # Custom Selectors : Depending on the requirement we can create our own selectors as in this example i have created a custom selector "inview" 
+    eg : 
+    jQuery.extend(jQuery.expr[':'], {  
+      inview: function (el) {    
+        if (condition) {
+              return true;    
+        }    
+        return false;  
+      }
+    });
+
+    Desc :  The expression is what will be called in our selector … it could beanything.The function is what you’d expect. We’ve added the return false, as that’s what you want the function to do at the minimum. Other than that, use any methods you need to return the Booleans that will power your selector. To make it run  call $("p:inview").css("color","orange"); so if <p> has selector inview it will change the color to orange.
+    ///////////////////////////////////////////////////////////////////////////////////////
+
+    
+    #Elements in wrapped set : Exaplaination with example
+
+    eg : $("h4").get() / $("h4").eq()
+
+    .get() and .eq() both return a single "element" from a jQuery object array, but they return the single element in different forms.
+
+    .eq() returns it as a jQuery object, meaning the DOM element is wrapped in the jQuery wrapper, which means that it accepts jQuery functions.
+
+    .get() return a raw DOM element. You may manipulate it by accessing its attributes and invoking its functions as you would on a raw DOM element. But it loses its identity as a jQuery-wrapped object, so a jQuery function like $("h4").fadeIn won't work on this.
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+    ## Manipulating page contents with jQuery : Maniuplation is possible only if you know how , what to maniuplate
+    
+    # Events : (Require to maniuplate the content) :A person actions that a web page can respond to are called events. An event represents the precise moment when something happens .
+
+    eg: moving a mouse over an element,selecting a radio button,clicking on an element.
+
+    Important events are : 
+
+    * Mouse Events : 
+    - click : eg :  $("#p").click(function(){
+                      alert("You Clicked");
+                    });
+
+    - dblclick : eg : $("#p").dblclick(function(){
+                        alert("You Double Clicked");
+                      });
+
+    - mouseenter : eg : $("#p").mouseenter(function(){
+                          alert("You entered in P element")
+                        });
+    - mouseleave : eg : $("#p").mouseenter(function(){
+                          alert("Bye You left P element")
+                        });
+
+    * Keyboard Events : 
+    - keyup : eg : $("#p").keyup(function(el){
+                    alert("You pressed a key");
+                  });
+    - keydown : eg : $("#p").keyup(function(el){
+                      alert("You pressed a key");
+                    });
+
+    * Form Events : 
+    - submit : 
+    - focus : eg : $("input").focus(function(){
+                    $(this).css("background-color","#cccccc");
+                  });
+    - blur : eg : $("input").blur(function(){
+                    $(this).css("background-color","#ffffff");
+                  });
+
+    - For more jQuery event reference, please visit http://www.w3schools.com/jquery/jquery_ref_events.asp .
+
+
+    # jQuery Effects : eg : Hide, Show, Toggle, Slide, Fade, and Animate
+
+    - hide : syntax : $(selector).hide(speed,callback);
+    - show : syntax : $(selector).show(speed,callback);
+    - toggle : you can toggle between the hide() and show() methods with the toggle() method.
+        syntax : $(selector).toggle(speed,callback);
+
+    Desc : The optional speed parameter specifies the speed of the hiding/showing, and can take the following values: "slow", "fast", or milliseconds.
+
+    eg : $("button").click(function(){
+            $("#id1").hide();
+            $("#id2").show();
+            $("p").toggle();
+        });
+
+    - fade : With jQuery you can fade elements in and out of visibility.
+      events related fadeIn, fadeOut etc...
+
+    - slide : The jQuery slide methods slides elements up and down
+      events related slidedown, slideup etc...
+
+    - animate : The jQuery animate() method is used to create custom animations.
+      syntax : $(selector).animate({params},speed,callback);
+
+      Desc : The required params parameter defines the CSS properties to be animated.The optional speed parameter specifies the duration of the effect. It can take the following values: "slow", "fast", or milliseconds.
+
+      eg :$("button").click(function(){
+            $("div").animate({left:'250px'});
+          }); 
+
+    To stop an ogoing animation we use stop() , syntax : $(selector).stop(stopAll,goToEnd);
+    Desc : The optional stopAll parameter specifies whether also the animation queue should be cleared or not. Default is false, which means that only the active animation will be stopped, allowing any queued animations to be performed afterwards.The optional goToEnd parameter specifies whether or not to complete the current animation immediately. Default is false.      
+
+  #Callback : A callback is a function which is passed as an argument to other function and is excuted when the parent function is completed.
+  eg : $("#id").hide(function(){ alert("this id is now hidden")});
+
+  #Chaining : Chaining allows us to run multiple jQuery methods (on the same element) within a single statement;
+  eg : $("#p1").css("color","red").slideUp(2000).slideDown(2000);
+
+  Desc : The "p1" element first changes to red, then it slides up, and then it slides down.
+
+  #DOM Maniuplation :It contains powerful methods for changing and manipulating HTML elements and attributes.
+  
+  Methods for maniuplation are : 
+    - text() - Sets or returns the text content of selected elements
+    - html() - Sets or returns the content of selected elements (including HTML markup)
+    - val() - Sets or returns the value of form fields
+
+  If empty barckets it acts like getter else if contains some params then as setter
+
+  eg :  $("#btn1").click(function(){
+          alert("Text: " + $("#test").html()); // here as getter
+        });
+
+  eg :  $("#btn1").click(function(){
+          alert("Text: " + $("#test").html("This is the new HTML")); // here as setter & sets the value
+        });
+
+  Genral getter is .attr() // same rule follows empty bracket as getter and with value is setter 
+
+    eg :  $("#btn1").click(function(){
+            alert("Selected value is "+ $("#id").attr("color"));// here gets the color of #id
+          });
+    eg :  $("#btn1").click(function(){
+            alert("Selected value is "+ $("#id").attr("color","red"));// here set the color of #id as red
+          });
+
+  #HTML Adding elements : With the help of
+
+   - append() - Inserts content at the end of the selected elements
+   - prepend() - Inserts content at the beginning of the selected elements
+   - after() - Inserts content after the selected elements
+   - before() - Inserts content before the selected elements
+
+   eg : $("p").append("Some appended text.");
+   eg : $("p").prepend("Some prepend text.");
+   eg : $("p").after("Some text after.");
+   eg : $("p").before("Some text before.");
+
+  #HTML Remove Elements : With the help of 
+   - remove() - Removes the selected element (and its child elements)
+   - empty() - Removes the child elements from the selected element
+
+   eg : $("#div1").remove();
+   eg : $("#div1").empty();
+
+  #CSS Classes : jQuery has several methods for CSS manipulation. We will look at the following methods:
+   - addClass() - Adds one or more classes to the selected elements
+   - removeClass() - Removes one or more classes from the selected elements
+   - toggleClass() - Toggles between adding/removing classes from the selected elements
+   - css() - Sets or returns the style attribute 
+
+   eg : $("button").click(function(){
+          $("h1,h2,p").addClass("blue");
+        });
+
+   eg : $("button").click(function(){
+          $("h1,h2,p").removeClass("blue");
+        }); 
+
+   eg : $("button").click(function(){
+          $("h1,h2,p").toggleClass("blue");
+        });   
+        
+   eg : $("button").click(function(){
+          $("#p1").css("background-color");// returns the value of bg color of #p1
+        });   
+
+   eg : $("button").click(function(){
+          $("#p1").css("background-color","red");// sets the bg color of #p1 to red
+        });
+
+
