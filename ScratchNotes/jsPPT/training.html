@@ -956,6 +956,60 @@
 <section class="slide">
   <h2>....contd</h2>
   <div>
+    <span class="smallHeading">Services V/S Factory</span> : 
+  </div>
+  <ul>
+    <li><span class="desc"> Factory</span> : 
+      <ul>
+        <li> When you’re using a Factory you create an object, add properties to it, then return that same object
+        </li>    
+        <li>
+         When you pass this service into your controller, those properties on the object will now be available in that controller through your factory
+        </li>
+      </ul>
+    </li>
+
+    <li><span class="desc"> Service</span> : 
+      <ul>
+        <li> When you’re using Service, it’s instantiated with the ‘new’ keyword. Because of that, you’ll add properties to ‘this’ and the service will return ‘this'.
+        </li>    
+        <li>
+          When you pass the service into your controller, those properties on ‘this’ will now be available on that controller through your service.
+        </li>
+      </ul>
+    </li>
+    
+  </ul>
+  <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" globals="$,jQuery,angular" >
+    // Service
+  module.service('MyService', function() {
+      this.method1 = function() {
+          //..
+      }
+      this.method2 = function() {
+          //..
+      }
+  }); 
+
+  // Factory
+  module.factory('MyFactory', function() {
+      var factory = {}; 
+      factory.method1 = function() {
+          //..
+      }
+      factory.method2 = function() {
+          //..
+      }
+    return factory;
+  });
+   
+  </textarea>
+
+</section>
+
+<section class="slide">
+  <h2>....contd</h2>
+  <div>
     Example set up for services : 
   </div>
 
@@ -1128,6 +1182,76 @@
   </ul>
 
 
+</section>
+
+<!-- Directives -->
+
+<section class="slide">
+  <h2>....contd</h2>
+  <ul>
+    <li> <a href="https://docs.angularjs.org/guide/directive" target="_blank">Directives</a> : Directives are markers on a DOM element (such as an attribute, element name, comment or CSS class) that tell AngularJS's HTML compiler ($compile) to attach a specified behavior to that DOM element or even transform the DOM element and its children.
+    </li>
+    <li>Angular comes with a set of these directives built-in, like ngBind, ngModel, and ngClass.</li>
+    <li>Just like controllers,services etc, you can create custom directives </li>
+    <li>
+     When Angular bootstraps your application, the HTML compiler traverses the DOM matching directives against the DOM elements
+    </li>
+    <li>
+      Angular normalizes an element's tag and attribute name to determine which elements match which directives.The normalization process is as follows: 
+      <ul>
+        <li>Strip x- and data- from the front of the element/attributes.</li>
+        
+        <li>Convert the :, -, or _-delimited name to camelCase</li>
+
+        <li>
+          Some examples will throw proper light:
+          <ul>
+            <li>ng-model</li><li>ng-bind</li><li>ng:bind</li><li>ng_bind</li><li>data-ng-bind </li><li>x-ng-bind</li>
+          </ul>
+          All will be normalized to ngBind
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+</section>
+
+<section class="slide">
+  <h2>....contd</h2>
+  <div>
+    <span class="desc">Custom Directives</span> : 
+  </div>
+
+  <div>
+    In this example we will build a directive that  updates the DOM to reflect the respected change.<br/>
+    Directives that want to modify the DOM typically use the link option {used in example} where :
+    <ul>
+      <li><span class="smallHeading">scope</span> :  is an Angular scope object.</li>
+      <li><span class="smallHeading">element</span> : is the jqLite-wrapped element that this directive matches.</li>
+      <li><span class="smallHeading">attrs</span> :  is a hash object with key-value pairs of normalized attribute names and their corresponding attribute values</li>
+    </ul>
+  </div>
+  <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" globals="$,jQuery,angular">
+  .directive('loadingContainer', function () {
+      return {
+          restrict: 'A',
+          link: function(scope, element, attrs) {
+              ---
+              ---
+          }
+      };
+  })
+   
+  </textarea>
+  <br/><div>
+    The restrict option is typically set to:
+    <ul>
+      <li><span class="smallHeading">'A'</span> :  only matches attribute name.</li>
+      <li><span class="smallHeading">'E'</span> : only matches element name.</li>
+      <li><span class="smallHeading">'C'</span> :  only matches class name</li>
+      <li><span class="smallHeading">'AEC'</span> : matches either attribute or element or class name</li>
+    </ul>
+  </div>
 </section>
 
 <!-- Live Demo -->
