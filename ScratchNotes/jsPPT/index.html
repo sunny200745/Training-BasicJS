@@ -57,6 +57,263 @@
 
 <!-- Begin slides. Just make elements with a class of slide. -->
 
+<!-- Basic Javascript -->
+<section class="slide">
+  <h1>JAVASCRIPT CONCEPTS</h1>
+</section>
+
+<section class="slide">
+  <h2>JS Basics</h2>
+  <ul>
+    <li> JavaScript is the programming language of the Web.
+    </li>
+    <li>
+     All modern HTML pages are using JavaScript.
+    </li>
+  </ul>
+  <div>
+    Basic Example for displaying the date and time<br/>
+    <br/><input type="button" id="jb1" value="Button" onclick="document.getElementById('js-p').innerHTML = Date()"/><br/><br/>
+      <p id="js-p"></p>
+  </div> 
+</section>
+
+<section class="slide">
+  <h2>Before JS <span class="desc">--></span> HTML DOM</h2>
+  <div>In the HTML DOM (Document Object Model), everything is a node:</div>
+  <ul>
+    <li> The document itself is a document node</li>
+    <li> All HTML elements are element nodes</li>
+    <li> All HTML attributes are attribute nodes</li>
+    <li> Text inside HTML elements are text nodes</li>
+    <li> Comments are comment nodes</li>
+    <li>
+      <span class="desc">The Document Object</span> : 
+      <ul>
+        <li>When an HTML document is loaded into a web browser, it becomes a document object</li>
+        <li>The document object provides properties and methods to access all node objects, from within JavaScript</li>
+        <li> List of Document Object Properties and Methods can be access from <a href="http://www.screencast.com/t/cBgbQCRb"> here</a></li>
+      </ul>
+    </li>
+    <li class="desc">To play with the properties open your console & write "document" with dot(.) you will have list of properties attached.</li>
+  </ul>
+  
+</section>
+
+<section class="slide">
+  <h2>Can Maniuplate DOM</h2>
+  <ul>
+    <li> The HTML DOM (the Document Object Model) is the standard for accessing HTML elements. Using the DOM, JavaScript can change and manipulate HTML
+    </li>
+    <li>
+      <span class="smallHeading"> Javascript can : </span>
+      <ul>
+        <li>Change HTML content</li>
+        <li>Change HTML attributes</li>
+        <li>Change HTML styles</li>
+        <li>and do many more things ...</li>
+      </ul>
+
+      <div>
+        <span class="desc">Go ahead open console of your browser and select an element put its id in place of js-p1 and play with it , it allows you to maniuplate HTML content, HTML attributes and styles</span><br/>
+        <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" >
+  // for content
+  document.getElementById("js-p1").innerHTML; // as getter
+  document.getElementById("js-p1").innerHTML = "Some text"; // as setter
+  
+  //for style
+  document.getElementById("js-p1").style.fontSize = "50px"
+
+  //for attributes
+  document.getElementById("image1").src = "change the src with your's"  
+
+        </textarea>
+      </div>
+    </li>
+  </ul>
+ 
+</section>
+
+<section class="slide">
+  <h2>..contd</h2>
+  <ul>
+    <li> A JavaScript function is a block of JavaScript code, that can be executed when "asked" for.
+    </li>
+
+    <li> For instance : A function can be executed when an event occurs, like when the user clicks a button.
+    </li>
+
+
+    <li>
+      <span class="smallHeading"> External JavaScript  </span>
+      <ul>
+        <li>Scripts can also be placed in external files</li>
+        <li>External scripts are practical when the same code is used in many different web pages</li>
+        <li>JavaScript files have the file extension .js.</li>
+        <li> <span class="desc">Advantages of External JS</span> : 
+          <ul>
+            <li>It separates HTML and code</li>
+            <li>It makes HTML and JavaScript easier to read and maintain</li>
+            <li>Cached JavaScript files can speed up page loads.</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+ 
+</section>
+
+<section class="slide">
+  <h2>JS Display Possibilities</h2>
+  <div><span class="smallHeading">JavaScript can "display" data in different ways</span>  : </div>
+  <ul>
+    <li> Writing into an alert box, using <span class="desc">window.alert()</span></li>
+    <li> Writing into the HTML output using <span class="desc">document.write()</span>.</li>
+    <li> Writing into an HTML element, using <span class="desc">innerHTML</span>.</li>
+    <li> Writing into the browser console, using <span class="desc">console.log()</span>.</li>
+
+
+    <div><br/><br/>
+        <span class="smallHeading">Again play time ;) , open console and try these statements, It will be fun</span>
+        
+      </div>
+  </ul>
+ 
+</section>
+
+<section class="slide">
+  <h2>JS DATA TYPES: </h2>
+  <ul>   
+    
+    <li> JavaScript statements are separated by semicolon ;</li>
+    <li> <span class="smallHeading">Primary Data Types</span> :  
+      <ul>
+        <li> String</li>
+        <li> Number</li>
+        <li> Boolean</li>
+      </ul>
+    </li>
+    <li> <span class="smallHeading">Composite Data Types</span> :  
+      <ul>
+        <li> Object</li>
+        <li> Array</li>
+      </ul>
+    </li>
+    <li> <span class="smallHeading">Special Data Types</span> :  
+      <ul>
+        <li> <span class="desc">Null</span> : <section class="slide">The null data type has only one value in JavaScript: null. The null keyword cannot be used as the name of a function or variable.</section></li>
+        <li> <span class="desc">Undefined</span> : <section class="slide">The undefined value is returned when you use an object property that does not exist, or a variable that has been declared, but has never had a value assigned to it.</section></li>
+      </ul>
+    </li>
+  </ul>
+ 
+</section>
+
+<section class="slide">
+  <h2>JavaScript Scope </h2>
+  <ul>   
+    
+    <li> In JavaScript, scope is the set to variables, objects, and functions you have access to.</li>
+    <li> JavaScript has function scope: The scope changes inside functions.</li>
+    <li> <span class="smallHeading">Local JavaScript Variables</span> :  
+      <ul>
+        <li> Local variables have local scope: They can only be accessed within the function.</li>
+        <div>
+          <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" >
+  // code here can not use carName
+
+  function myFunction() {
+      var carName = "Volvo";
+
+      // code here can use carName
+
+  }
+
+          </textarea>
+        </div>
+      </ul>
+    </li>
+    <li> <span class="smallHeading">Global JavaScript Variables</span> :  
+      <ul>
+        <li> A global variable has global scope: All scripts and functions on a web page can access it. </li>
+        <div>
+          <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" >
+  var carName = " Volvo";
+
+  // code here can use carName
+
+  function myFunction() {
+
+      // code here can use  carName 
+
+  }
+
+          </textarea>
+        </div>
+      </ul>
+    </li>
+    <li> If you assign a value to a variable that has not been declared, it will automatically become a GLOBAL variable. eg : 
+      <div>
+          <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" >
+  // code here can use carName
+
+  function myFunction() {
+      carName = "Volvo";
+
+      // code here can use carName
+
+  }
+  // as carName is not defined so automatically its global ;)
+
+          </textarea>
+        </div>
+    </li>
+  </ul>
+ 
+</section>
+
+<section class="slide">
+  <h2>JavaScript Events </h2>
+  <div><span class="smallHeading">An HTML event can be something the browser does, or something a user does</span>. Example for the same are : </div>
+  <ul>   
+    
+    <li> An HTML web page has finished loading</li>
+    <li> An HTML input field was changed</li>
+    <li> An HTML button was clicked</li>
+    <li> Common list can be viewed from here : <a href="http://www.screencast.com/t/NMR46Updt" target="_blank">JSevents</a>
+    </li>
+  </ul>
+ 
+</section>
+
+<section class="slide">
+  <h2>Some More Concepts... </h2>
+  <div>There are variety of concepts that you should have look at yourself and explore the new possibilities. Few of them have been covered and rest of them are listed below , just visit them </div>
+  <ul>   
+    
+    <li class="smallHeading"> Strings</li>
+    <li class="smallHeading"> Numbers</li>
+    <li class="smallHeading"> Math</li>
+    <li class="smallHeading"> Date</li>
+    <li class="smallHeading"> Arrays</li>
+    <li class="smallHeading"> Booleans</li>
+    <li class="smallHeading"> Comparisions</li>
+    <li class="smallHeading"> Conditions</li>
+    <li class="smallHeading"> Switch</li>
+    <li class="smallHeading"> Loops</li>
+    <li class="smallHeading"> Type Of</li>
+    <li class="smallHeading"> Errors</li>
+    <li class="desc"> HOISTING</li>
+    <li class="smallHeading"> Debugging</li>
+    <li class="smallHeading"> JSON</li>
+    <li class="desc"> and many more... Do have a look</li>
+  </ul>
+ 
+</section>
+
+
+
+<!-- OOJS -->
 <section class="slide">
   <h1>OOPS IN JAVASCRIPT</h1>
 </section>
